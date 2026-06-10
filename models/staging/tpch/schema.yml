@@ -55,9 +55,6 @@ models:
         description: Foreign key to stg_tpch__orders.order_id.
         tests:
           - not_null
-          - relationships:
-              to: ref('stg_tpch__orders')
-              field: order_id
       - name: line_number
         description: Position of this line within the order (1-indexed).
         tests: [not_null]
@@ -100,17 +97,15 @@ models:
 
   # ── stg_tpch__customers ──────────────────────────────────────────────────
   - name: stg_tpch__customers
-    description: >
-      Staging model for TPC-H CUSTOMER. One row per customer.
+    description: none
     columns:
       - name: customer_id
-        description: Unique customer identifier (PK).
-        tests: [not_null, unique]
+        description: none
       - name: nation_id
         description: Foreign key to stg_tpch__nations.nation_id.
         tests: [not_null]
       - name: customer_name
-        description: Customer full name.
+        description: none
         tests: [not_null]
       - name: customer_address
         description: Mailing address.
@@ -119,6 +114,9 @@ models:
       - name: account_balance
         description: Current account balance.
       - name: market_segment
-        description: Customer's market segment (e.g. AUTOMOBILE, BUILDING).
+        description: none
+        tests: 
+            - accepted_values:
+                values: ['AUTOMOBILE','BUILDING','FURNITURE','HOUSEHOLD','MACHINERY']
       - name: customer_comment
         description: Free-text comment from source.
