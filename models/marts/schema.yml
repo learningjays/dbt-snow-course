@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: Final fact table with revenue and order metrics
+
+    columns:
+      - name: order_id
+        description: Unique order identifier
+        tests: [not_null]
+
+      - name: total_revenue
+        description: Total revenue generated from the order
+        tests: [not_null]
+
+      - name: number_of_items
+        description: Number of items in the order

@@ -1,0 +1,46 @@
+
+version: 2
+
+sources:
+  - name: TPCH
+    description: TPCH sample dataset
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+
+    #freshness:
+     # warn_after: {count: 4, period: hour}
+      #error_after: {count: 100000, period: hour}
+
+    tables:
+      - name: ORDERS
+        description: Orders table
+        loaded_at_field: CAST(O_ORDERDATE AS TIMESTAMP)
+
+        columns:
+          - name: O_ORDERKEY
+            tests: [not_null, unique]
+
+          - name: O_CUSTKEY
+            tests: [not_null]
+
+      - name: LINEITEM
+        description: Line items table
+        loaded_at_field: CAST(L_SHIPDATE AS TIMESTAMP)
+
+        columns:
+          - name: L_ORDERKEY
+            tests: [not_null]
+
+      - name: CUSTOMER
+        description: Customers table
+
+        columns:
+          - name: C_CUSTKEY
+            tests: [not_null, unique]
+
+      - name: NATION
+        description: Nation table
+
+        columns:
+          - name: N_NATIONKEY
+            tests: [not_null, unique]
