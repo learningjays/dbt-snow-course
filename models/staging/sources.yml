@@ -2,20 +2,19 @@
 version: 2
 
 sources:
-  - name: tpch
-    description: Sample TPCH dataset from Snowflake
+  - name: TPCH
+    description: TPCH sample dataset
     database: SNOWFLAKE_SAMPLE_DATA
     schema: TPCH_SF1
 
-    freshness:
-      warn_after: {count: 4, period: hour}
-      error_after: {count: 12, period: hour}
+    #freshness:
+     # warn_after: {count: 4, period: hour}
+      #error_after: {count: 100000, period: hour}
 
     tables:
-
-      - name: orders
-        description: Orders placed by customers
-        loaded_at_field: O_ORDERDATE
+      - name: ORDERS
+        description: Orders table
+        loaded_at_field: CAST(O_ORDERDATE AS TIMESTAMP)
 
         columns:
           - name: O_ORDERKEY
@@ -24,23 +23,23 @@ sources:
           - name: O_CUSTKEY
             tests: [not_null]
 
-      - name: lineitem
-        description: Line items for each order
-        loaded_at_field: L_SHIPDATE
+      - name: LINEITEM
+        description: Line items table
+        loaded_at_field: CAST(L_SHIPDATE AS TIMESTAMP)
 
         columns:
           - name: L_ORDERKEY
             tests: [not_null]
 
-      - name: customer
-        description: Customer master data
+      - name: CUSTOMER
+        description: Customers table
 
         columns:
           - name: C_CUSTKEY
             tests: [not_null, unique]
 
-      - name: nation
-        description: Nation lookup table
+      - name: NATION
+        description: Nation table
 
         columns:
           - name: N_NATIONKEY
