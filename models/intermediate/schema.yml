@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_orders_enriched
+    description: Enriched dataset combining orders, customers, and geographic data
+
+    columns:
+      - name: order_id
+        description: Unique order identifier
+
+      - name: customer_name
+        description: Name of the customer
+
+      - name: nation_name
+        description: Country of the customer
+
+      - name: region_name
+        description: Region of the customer
+
+      - name: order_year
+        description: Year when the order was placed

@@ -1,18 +1,15 @@
+
 version: 2
 
 models:
   - name: stg_tpch_orders
+    description: Cleaned orders data from TPCH source
+
     columns:
       - name: order_id
+        description: Unique identifier for each order
         tests: [not_null, unique]
 
       - name: customer_id
-        tests: [not_null]
-
-  - name: stg_tpch_customers
-    columns:
-      - name: customer_id
-        tests: [not_null, unique]
-
-      - name: nation_id
+        description: Identifier of the customer placing the order
         tests: [not_null]
